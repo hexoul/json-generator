@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const RadioContext = createContext({});
+const RadioContext = createContext({});
 
 export function RadioGroup({ label, children, ...rest }) {
   return (
@@ -14,7 +14,7 @@ export function RadioGroup({ label, children, ...rest }) {
 }
 
 export function Radio({ label, children, value, name, defaultChecked, disabled }) {
-  const group = useContext(RadioContext);
+  const { [label]: group } = useContext(RadioContext);
 
   return (
     <label>
@@ -24,8 +24,8 @@ export function Radio({ label, children, value, name, defaultChecked, disabled }
         name={name}
         defaultChecked={defaultChecked}
         disabled={disabled || group.disabled}
-        checked={group[label].value !== undefined ? value === group[label].value : undefined}
-        onChange={(e) => group[label].onChange && group[label].onChange(e.target.value)}
+        checked={group.value !== undefined ? value === group.value : undefined}
+        onChange={(e) => group.onChange && group.onChange(e.target.value)}
       />
       {children}
     </label>

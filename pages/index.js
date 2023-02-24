@@ -4,12 +4,17 @@ import { Inter } from "next/font/google";
 import { useState } from "react";
 
 import styles from "@/styles/Home.module.css";
-import Element from "@/components/element";
+import { Element, ElementContext } from "@/components/element";
 
 const inter = Inter({ subsets: ["latin"] });
+const defaultElement = {
+  provider: "netflix",
+  title: { type: "featured", url: "" },
+  startAt: "2100-01-01 00:00:00",
+  endAt: "2100-01-02 00:00:00",
+};
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
   const [elements, setElements] = useState([]);
 
   return (
@@ -36,24 +41,28 @@ export default function Home() {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h2 className={inter.className}>
-              요소 추가 <span>-&gt;</span>&nbsp;
-              <button
-                onClick={() => setElements([...elements, { title: {} }])}
-              >
-                +
-              </button>
-            </h2>
-            {elements.map((e, idx) => (
-              <Element key={`e${idx}`} e={e} cb={() => setLoading(!loading)} />
-            ))}
+            <ElementContext.Provider value={{ elements, setElements }}>
+              <h2 className={inter.className}>
+                요소 추가 <span>-&gt;</span>&nbsp;
+                <button
+                  onClick={() =>
+                    setElements([...elements, { ...defaultElement }])
+                  }
+                >
+                  +
+                </button>
+              </h2>
+              {elements.map((_, idx) => (
+                <Element key={`e${idx}`} idx={idx} />
+              ))}
+            </ElementContext.Provider>
           </div>
 
           <div className={styles.card}>
             <h2 className={inter.className}>
               JSON <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>{JSON.stringify(elements)}</p>
+            <pre>{JSON.stringify(elements, undefined, 2)}</pre>
           </div>
         </div>
 

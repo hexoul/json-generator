@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 import styles from "@/styles/Element.module.css";
 import { Radio, RadioGroup } from "@/components/radio";
@@ -15,7 +15,13 @@ const providers = {
   theater: "상영관",
 };
 
-export default function Element({ e, cb }) {
+export const ElementContext = createContext({
+  elements: [],
+  setElements: () => {},
+});
+
+export function Element({ idx }) {
+  const { elements, setElements } = useContext(ElementContext);
   const [type, setType] = useState("featured");
   const [provider, setProvider] = useState("netflix");
 
@@ -25,9 +31,9 @@ export default function Element({ e, cb }) {
         label="Type"
         value={type}
         onChange={(v) => {
-          e.title.type = v;
+          elements[idx].title = { ...elements[idx].title, type: v };
           setType(v);
-          cb();
+          setElements([...elements]);
         }}
       >
         {Object.keys(types).map((k) => (
@@ -41,9 +47,9 @@ export default function Element({ e, cb }) {
         label="Provider"
         value={provider}
         onChange={(v) => {
-          e.provider = v;
+          elements[idx].provider = v;
           setProvider(v);
-          cb();
+          setElements([...elements]);
         }}
       >
         {Object.keys(providers).map((k) => (
