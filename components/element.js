@@ -27,6 +27,7 @@ export function Element({ idx }) {
 
   return (
     <div className={styles.element}>
+      <h2>{idx + 1}번째</h2>
       <RadioGroup
         label="Type"
         value={type}
@@ -59,6 +60,13 @@ export function Element({ idx }) {
         ))}
       </RadioGroup>
       <br />
+      <div>작품 ID</div>
+      <div>작품 제목</div>
+      <div>포스터 URL</div>
+      <div>배너 이미지 URL</div>
+      <div>랜딩 URL</div>
+      <div>시작일</div>
+      <div>종료일</div>
       <hr />
     </div>
   );

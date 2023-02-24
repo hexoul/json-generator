@@ -9,3 +9,11 @@
   font-family: var(--font-mono);
   padding-bottom: 1rem;
 }
+
+.element h2 {
+  color: steelblue;
+}
+
+.element div {
+  padding-bottom: 10px;
+}
