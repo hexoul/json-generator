@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-
 import { useState } from "react";
 
 import styles from "@/styles/Home.module.css";
@@ -10,7 +9,8 @@ import Element from "@/components/element";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [elements, setElements] = useState([{ id: '1' }]);
+  const [loading, setLoading] = useState(false);
+  const [elements, setElements] = useState([]);
 
   return (
     <>
@@ -37,9 +37,16 @@ export default function Home() {
         <div className={styles.grid}>
           <div className={styles.card}>
             <h2 className={inter.className}>
-              요소 추가 <span>-&gt;</span>
+              요소 추가 <span>-&gt;</span>&nbsp;
+              <button
+                onClick={() => setElements([...elements, { title: {} }])}
+              >
+                +
+              </button>
             </h2>
-            {elements.map((e) => <Element key={e.id} />)}
+            {elements.map((e, idx) => (
+              <Element key={`e${idx}`} e={e} cb={() => setLoading(!loading)} />
+            ))}
           </div>
 
           <div className={styles.card}>

@@ -100,6 +100,33 @@ a {
   text-decoration: none;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid skyblue;
+  transition: 0.2s all linear;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+input:checked {
+  border: 8px solid skyblue;
+}
+
+fieldset {
+  padding: 5px;
+  padding-bottom: 10px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

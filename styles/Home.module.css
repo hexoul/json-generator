@@ -16,6 +16,7 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+  padding-bottom: 1rem;
 }
 
 .description a {
@@ -62,6 +63,16 @@
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
+}
+
+.card h2 button {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  background-color: whitesmoke;
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .card p {
@@ -114,7 +125,7 @@
   justify-content: center;
   align-items: center;
   width: 95px;
-  height: 100px;
+  height: auto;
   padding: 25px 10px;
   margin-left: 16px;
   transform: translateZ(0);
