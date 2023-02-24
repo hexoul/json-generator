@@ -1,15 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
 
-import { useState } from 'react'
+import { useState } from "react";
 
-import styles from '@/styles/Home.module.css'
+import styles from "@/styles/Home.module.css";
+import Element from "@/components/element";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [elements, setElements] = useState([]);
+  const [elements, setElements] = useState([{ id: '1' }]);
 
   return (
     <>
@@ -38,31 +39,23 @@ export default function Home() {
             <h2 className={inter.className}>
               요소 추가 <span>-&gt;</span>
             </h2>
+            {elements.map((e) => <Element key={e.id} />)}
           </div>
 
           <div className={styles.card}>
             <h2 className={inter.className}>
               JSON <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
-              {JSON.stringify(elements)}
-            </p>
+            <p className={inter.className}>{JSON.stringify(elements)}</p>
           </div>
         </div>
 
         <div className={styles.center}>
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
+          <div className={styles.json}>
+            <Image src="/json.svg" alt="json" width={80} height={70} priority />
           </div>
         </div>
-
       </main>
     </>
-  )
+  );
 }
