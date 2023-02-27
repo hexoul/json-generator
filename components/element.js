@@ -60,13 +60,34 @@ export function Element({ idx }) {
         ))}
       </RadioGroup>
       <br />
-      <div>작품 ID</div>
-      <div>작품 제목</div>
-      <div>포스터 URL</div>
-      <div>배너 이미지 URL</div>
-      <div>랜딩 URL</div>
-      <div>시작일</div>
-      <div>종료일</div>
+      <div>
+        <label>작품 ID </label>
+        <input type="number" />
+      </div>
+      <div>
+        <label>작품 제목 </label>
+        <input type="text" />
+      </div>
+      <div>
+        <label>포스터 URL </label>
+        <input type="url" />
+      </div>
+      <div>
+        <label>배너 이미지 URL </label>
+        <input type="url" />
+      </div>
+      <div>
+        <label>랜딩 URL </label>
+        <input type="url" />
+      </div>
+      <div>
+        <label>시작일 </label>
+        <input type="date" />
+      </div>
+      <div>
+        <label>종료일 </label>
+        <input type="date" />
+      </div>
       <hr />
     </div>
   );
