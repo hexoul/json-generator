@@ -34,7 +34,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By Seunggon Kim
+              By Esji Kim
             </a>
           </div>
         </div>

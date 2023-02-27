@@ -24,6 +24,7 @@ export function Element({ idx }) {
   const { elements, setElements } = useContext(ElementContext);
   const [type, setType] = useState("featured");
   const [provider, setProvider] = useState("netflix");
+  const [urlHidden, setUrlHidden] = useState(true);
 
   return (
     <div className={styles.element}>
@@ -32,8 +33,17 @@ export function Element({ idx }) {
         label="Type"
         value={type}
         onChange={(v) => {
-          elements[idx].title = { ...elements[idx].title, type: v };
           setType(v);
+
+          elements[idx].title = { ...elements[idx].title, type: v };
+
+          if (v === "featured") {
+            setUrlHidden(true);
+            elements[idx].title = { ...elements[idx].title, url: "" };
+          } else {
+            setUrlHidden(false);
+          }
+
           setElements([...elements]);
         }}
       >
@@ -62,23 +72,69 @@ export function Element({ idx }) {
       <br />
       <div>
         <label>작품 ID </label>
-        <input type="number" />
+        <input
+          type="number"
+          onChange={(e) => {
+            const v = +e.target.value;
+            if (isNaN(v) || !isFinite(v)) return;
+
+            elements[idx].title = { ...elements[idx].title, id: v };
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>작품 제목 </label>
-        <input type="text" />
+        <input
+          type="text"
+          onChange={(e) => {
+            elements[idx].title = {
+              ...elements[idx].title,
+              titleKr: e.target.value,
+            };
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>포스터 URL </label>
-        <input type="url" />
+        <input
+          type="url"
+          onChange={(e) => {
+            elements[idx].title = {
+              ...elements[idx].title,
+              posterImageURL: e.target.value,
+            };
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>배너 이미지 URL </label>
-        <input type="url" />
+        <input
+          type="url"
+          onChange={(e) => {
+            elements[idx].title = {
+              ...elements[idx].title,
+              imageUrl: e.target.value,
+            };
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>랜딩 URL </label>
-        <input type="url" />
+        <input
+          type="url"
+          hidden={urlHidden}
+          onChange={(e) => {
+            elements[idx].title = {
+              ...elements[idx].title,
+              url: e.target.value,
+            };
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>시작일 </label>
