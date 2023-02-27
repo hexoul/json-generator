@@ -138,11 +138,25 @@ export function Element({ idx }) {
       </div>
       <div>
         <label>시작일 </label>
-        <input type="date" />
+        <input
+          type="datetime-local"
+          onChange={(e) => {
+            const v = `${e.target.value.replace("T", " ")}:00`;
+            elements[idx].startAt = v;
+            setElements([...elements]);
+          }}
+        />
       </div>
       <div>
         <label>종료일 </label>
-        <input type="date" />
+        <input
+          type="datetime-local"
+          onChange={(e) => {
+            const v = `${e.target.value.replace("T", " ")}:00`;
+            elements[idx].endAt = v;
+            setElements([...elements]);
+          }}
+        />
       </div>
       <hr />
     </div>
