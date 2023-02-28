@@ -68,7 +68,23 @@ export default function Home() {
 
         <div className={styles.center}>
           <div className={styles.json}>
-            <Image src="/json.svg" alt="json" width={80} height={70} priority />
+            <a
+              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
+                JSON.stringify(elements, undefined, 2)
+              )}`}
+              download={`${new Date()
+                .toISOString()
+                .split("T")[0]
+                .replace(/-/g, "")}.json`}
+            >
+              <Image
+                src="/json.svg"
+                alt="json"
+                width={80}
+                height={70}
+                priority
+              />
+            </a>
           </div>
         </div>
       </main>
