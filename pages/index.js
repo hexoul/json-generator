@@ -72,10 +72,7 @@ export default function Home() {
               href={`data:text/plain;charset=utf-8,${encodeURIComponent(
                 JSON.stringify(elements, undefined, 2)
               )}`}
-              download={`${new Date()
-                .toISOString()
-                .split("T")[0]
-                .replace(/-/g, "")}.json`}
+              download="featured.json"
             >
               <Image
                 src="/json.svg"
